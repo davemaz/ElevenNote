@@ -40,6 +40,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="NoteCreateModel.cs" />
+    <Compile Include="NoteDetailModel.cs" />
+    <Compile Include="NoteEditModel.cs" />
+    <Compile Include="NoteListItemModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
