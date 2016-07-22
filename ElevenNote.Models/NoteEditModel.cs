@@ -14,6 +14,8 @@ namespace ElevenNote.Models
 
         public string Content { get; set; }
 
+        public bool IsStarred { get; set; }
+
         public override string ToString()
         {
             return $"[{NoteId}] {Title}";
