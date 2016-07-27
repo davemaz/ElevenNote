@@ -26,11 +26,24 @@ namespace ElevenNote.Web.Controllers
                     );
         }
 
-        // GET: Notes
-        public ActionResult Index()
-        {
+        //// GET: Notes
+        //public ActionResult Index()
+        //{
 
+        //    var notes = _svc.Value.GetNotes();
+
+        //    return View(notes);
+        //}
+
+        public ActionResult Index(string search)
+        {
             var notes = _svc.Value.GetNotes();
+
+            if(!String.IsNullOrEmpty(search))
+            {
+                notes = notes.Where(s => s.Content.ToLower().Contains(search.ToLower()) ||
+                    s.Title.ToLower().Contains(search.ToLower()));
+            }
 
             return View(notes);
         }
