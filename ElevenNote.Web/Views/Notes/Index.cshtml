@@ -4,7 +4,7 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>All Notes</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -22,10 +22,15 @@
 
 <form asp-controller="Notes" asp-action="Index">
     <p>
-        Contents or Title: <input type="text" name="search" />
+        Contents or Title: <input type="text" name="search" value="@ViewData["search"]" />
         <input type="submit" value="Filter" />
+        @if (!String.IsNullOrEmpty(ViewBag.Search))
+        {
+            @Html.ActionLink("Clear", "Index")
+        }
     </p>
 </form>
+
 
 <table class="table">
     <tr>
@@ -53,7 +58,7 @@
         <td>
             @Html.DisplayFor(modelItem => item.Title)
         </td>
-        <td>
+        <td style="padding-left: 5%">
             @Html.DisplayFor(modelItem => item.IsStarred, new { Id = item.NoteId })
         </td>
         <td>

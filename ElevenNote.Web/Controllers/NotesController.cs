@@ -43,6 +43,12 @@ namespace ElevenNote.Web.Controllers
             {
                 notes = notes.Where(s => s.Content.ToLower().Contains(search.ToLower()) ||
                     s.Title.ToLower().Contains(search.ToLower()));
+
+                ViewBag.Search = search;
+            }
+            else
+            {
+                ViewBag.Search = String.Empty;
             }
 
             return View(notes);
