@@ -48,6 +48,20 @@ namespace ElevenNote.Web.Controllers
             return View(notes);
         }
 
+        public ActionResult IsStarred()
+        {
+            var notes = _svc.Value.GetNotes();
+            notes = notes.Where(s => s.IsStarred == true);
+            return View(notes);
+        }
+
+        public ActionResult IsNotStarred()
+        {
+            var notes = _svc.Value.GetNotes();
+            notes = notes.Where(s => s.IsStarred == false);
+            return View(notes);
+        }
+
         public ActionResult Create()
         {
             return View();

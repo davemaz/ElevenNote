@@ -1,31 +1,10 @@
 ﻿@model IEnumerable<ElevenNote.Models.NoteListItemModel>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Starred Notes";
 }
 
-<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-
-@if (TempData.ContainsKey("SaveResult"))
-{
-    <div class="alert alert-success fade in" role="alert">
-        <button type="button" class="close" data-dismiss="alert">
-            <span>&times;</span>
-        </button>
-        @TempData["SaveResult"]
-    </div>
-}
-
-<form asp-controller="Notes" asp-action="Index">
-    <p>
-        Contents or Title: <input type="text" name="search" />
-        <input type="submit" value="Filter" />
-    </p>
-</form>
+<h2>Starred Notes</h2>
 
 <table class="table">
     <tr>
@@ -35,8 +14,9 @@
         <th>
             @Html.DisplayNameFor(model => model.Title)
         </th>
-        <th>All | 
-            @Html.ActionLink(Html.DisplayNameFor(model => model.IsStarred).ToString(), "IsStarred") | 
+        <th>
+            @Html.ActionLink("All", "Index") |
+            @Html.DisplayNameFor(model => model.IsStarred) |
             @Html.ActionLink("Unstarred", "IsNotStarred")
         </th>
         <th>
@@ -45,27 +25,28 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.NoteId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IsStarred, new { Id = item.NoteId })
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreatedUtc)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.NoteId }) |
-            @Html.ActionLink("Details", "Details", new { id = item.NoteId }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.NoteId })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NoteId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsStarred, new { Id = item.NoteId })
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedUtc)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.NoteId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.NoteId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.NoteId })
+            </td>
+        </tr>
+    }
 
 </table>
 
@@ -93,5 +74,5 @@
                 });
             });
         });
-    </script>    
+    </script>
 }
